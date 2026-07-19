@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión — Iron Habit Gym</title>
+
+  <link rel="icon" type="image/png" href="logo-icon-favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body id="app-body">
+
+  <!-- ==========================================================================
+     PANTALLA DE ACCESO (LOGIN) — Documento HTML independiente.
+     Al enviarse el formulario con éxito, el navegador recarga hacia dashboard.html
+     ========================================================================== -->
+  <div id="layout-login" class="page-layout active-layout">
+    <section class="login-section">
+      <div class="login-card">
+        <div class="login-logo">
+          <div class="login-logo-icon"><i class="ti ti-barbell"></i></div>
+          <span class="login-logo-text">Iron Habit Gym</span>
+        </div>
+        <div class="login-header">
+          <h2>Iniciar Sesión</h2>
+          <p>Introduce las credenciales de administración del gimnasio</p>
+        </div>
+
+        <!-- Formulario de acceso. El correo escrito se conserva en sessionStorage
+             para que, si el usuario refresca por accidente, no tenga que reescribirlo -->
+        <form id="form-login-principal" novalidate>
+          <div class="login-group">
+            <label for="login-email">Usuario o Correo</label>
+            <div class="input-with-icon">
+              <i class="ti ti-mail"></i>
+              <input type="email" id="login-email" name="login-email" placeholder="correo@ejemplo.com" required autocomplete="username">
+            </div>
+            <small class="field-error-msg" id="err-login-email"></small>
+          </div>
+          <div class="login-group" style="margin-bottom: 1.5rem;">
+            <label for="login-password">Contraseña</label>
+            <div class="input-with-icon">
+              <i class="ti ti-lock"></i>
+              <input type="password" id="login-password" name="login-password" placeholder="••••••••" required autocomplete="current-password">
+              <i class="ti ti-eye eye" id="toggle-pwd-btn" role="button" tabindex="0" aria-label="Mostrar contraseña"></i>
+            </div>
+            <small class="field-error-msg" id="err-login-password"></small>
+          </div>
+
+          <button type="submit" class="btn-login-submit" id="btn-login-submit">Ingresar al Sistema</button>
+        </form>
+
+        <div class="back-to-landing">
+          <a href="index.html"><i class="ti ti-arrow-left"></i> Volver a la página principal</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

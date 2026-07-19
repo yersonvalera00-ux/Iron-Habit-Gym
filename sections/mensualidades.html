@@ -1,0 +1,72 @@
+<!-- ----------------------------------------------------------------
+     VISTA C: GESTIÓN DE MENSUALIDADES / CAJA
+     Fragmento cargado de forma asíncrona por dashboard.js (fetch)
+     ---------------------------------------------------------------- -->
+<div id="tab-mensualidades" class="dashboard-tab-content">
+
+  <div class="grid-form" style="grid-template-columns: 1fr 2fr; align-items: start;">
+
+    <!-- Registrar Pago -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Registrar Recibo de Pago</h3>
+      </div>
+      <div class="section-card-body">
+        <form id="form-pago" novalidate>
+          <div class="form-group">
+            <label for="pago-socio-id" class="form-label">Seleccionar Socio *</label>
+            <select id="pago-socio-id" name="pago-socio-id" class="form-control-dash" required>
+              <!-- Cargado dinámicamente -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pago-monto" class="form-label">Monto Recibido ($ COP) *</label>
+            <input type="number" id="pago-monto" name="pago-monto" class="form-control-dash" placeholder="Ej. 320000" min="1" required>
+            <small class="field-error-msg" id="err-pago-monto"></small>
+          </div>
+          <div class="form-group">
+            <label for="pago-metodo" class="form-label">Método de Pago *</label>
+            <select id="pago-metodo" name="pago-metodo" class="form-control-dash" required>
+              <option value="Efectivo">Efectivo</option>
+              <option value="Transferencia" selected>Transferencia Bancaria</option>
+              <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pago-fecha" class="form-label">Fecha del Pago *</label>
+            <input type="date" id="pago-fecha" name="pago-fecha" class="form-control-dash" required>
+          </div>
+          <button type="submit" class="btn-dash btn-dash-primary" style="width: 100%; margin-top: 1rem;" id="btn-save-pago">Confirmar Transacción</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Historial de Transacciones / Caja Registradora -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Historial de Pagos y Caja</h3>
+      </div>
+      <div class="section-card-body" style="padding: 0;">
+        <div class="table-responsive">
+          <table class="table-custom">
+            <thead>
+              <tr>
+                <th>ID Pago</th>
+                <th>Socio</th>
+                <th>Monto</th>
+                <th>Método</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="pagos-list-body">
+              <!-- Cargado dinámicamente desde JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

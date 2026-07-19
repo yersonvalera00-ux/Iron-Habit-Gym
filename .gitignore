@@ -1,0 +1,6 @@
+# Ignorar archivos locales del IDE y dependencias
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db

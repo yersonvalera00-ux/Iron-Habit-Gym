@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control — Iron Habit Gym</title>
+
+  <link rel="icon" type="image/png" href="logo-icon-favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body id="app-body">
+
+  <!-- ==========================================================================
+     PANEL DE CONTROL / DASHBOARD ADMINISTRATIVO
+     Documento HTML independiente y protegido por sesión. El contenido de cada
+     pestaña (Socios, Mensualidades, Rutinas, etc.) NO vive aquí: se solicita
+     de forma asíncrona (fetch) desde /sections/*.html según la pestaña elegida,
+     y el historial del navegador (atrás/adelante) se controla con la History API.
+     ========================================================================== -->
+  <div id="layout-dashboard" class="dashboard-container active-layout">
+    <div class="dashboard-wrapper">
+
+      <!-- Menú Lateral (Sidebar) -->
+      <aside class="sidebar" id="dashboard-sidebar">
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-icon"><i class="ti ti-barbell"></i></div>
+          <span class="sidebar-logo-text">Iron Habit Gym</span>
+        </div>
+
+        <p class="sidebar-menu-title">Gestión</p>
+        <nav class="sidebar-nav">
+          <button class="sidebar-link active" data-tab="tab-kpis" id="btn-tab-kpis">
+            <i class="ti ti-dashboard"></i> Panel de Control
+          </button>
+          <button class="sidebar-link" data-tab="tab-socios" id="btn-tab-socios">
+            <i class="ti ti-users"></i> Socios (Clientes)
+          </button>
+          <button class="sidebar-link" data-tab="tab-mensualidades" id="btn-tab-mensualidades">
+            <i class="ti ti-credit-card"></i> Mensualidades
+          </button>
+          <button class="sidebar-link" data-tab="tab-rutinas" id="btn-tab-rutinas">
+            <i class="ti ti-run"></i> Rutinas de Ejercicio
+          </button>
+          <button class="sidebar-link" data-tab="tab-estadisticas" id="btn-tab-estadisticas">
+            <i class="ti ti-chart-bar"></i> Reportes / Estadísticas
+          </button>
+        </nav>
+
+        <p class="sidebar-menu-title">Sistema</p>
+        <nav class="sidebar-nav">
+          <button class="sidebar-link" data-tab="tab-configuracion" id="btn-tab-configuracion">
+            <i class="ti ti-settings"></i> Configuración
+          </button>
+          <button class="sidebar-link" id="btn-logout" style="color: var(--danger);">
+            <i class="ti ti-logout"></i> Cerrar Sesión
+          </button>
+        </nav>
+
+        <!-- Información del Usuario Activo -->
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar" id="current-user-avatar">YV</div>
+          <div class="sidebar-user-info">
+            <p class="sidebar-user-name" id="current-user-name">Yerson Valera</p>
+            <p class="sidebar-user-role" id="current-user-role">Administrador</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenedor Principal del Contenido -->
+      <main class="main-content">
+
+        <!-- Barra Superior (Topbar) -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="menu-toggle-btn" id="btn-toggle-sidebar"><i class="ti ti-menu-2"></i></button>
+            <h2 class="topbar-title" id="topbar-section-title">Panel de Control</h2>
+          </div>
+          <div class="topbar-right">
+            <!-- Botón para alternar Modo Claro / Modo Oscuro -->
+            <button class="theme-toggle-btn" id="btn-toggle-theme" aria-label="Cambiar tema">
+              <i class="ti ti-sun" id="theme-icon"></i>
+            </button>
+            <div class="topbar-user-profile">
+              <span style="font-weight: 500; font-size: 0.9rem;" id="topbar-user-display">Yerson V.</span>
+              <div class="sidebar-user-avatar" style="width: 32px; height: 32px; font-size: 0.8rem;" id="topbar-avatar">YV</div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Panel de Vistas Dinámicas: aquí se inyecta el fragmento HTML de la pestaña activa -->
+        <div class="dashboard-view-panel" id="dashboard-view-panel" aria-live="polite">
+          <div class="section-loading-state" id="section-loading-placeholder">
+            <i class="ti ti-loader-2 spin-icon"></i>
+            <span>Cargando sección...</span>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+     VENTANA EMERGENTE (POPUP MODAL) - FICHA FÍSICA E HISTORIAL FÍSICO
+     Se mantiene en el shell porque es compartida entre pestañas (Socios).
+     ========================================================================== -->
+  <div class="modal-overlay" id="modal-ficha-corporal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-ficha-title">Historial Corporal de Socio</h3>
+        <button class="modal-close-btn" id="btn-close-ficha-modal"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="modal-body" id="modal-ficha-body">
+        <!-- Renderizado dinámicamente desde JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-dash btn-dash-secondary" id="btn-close-ficha-modal-2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- ==========================================================================
+     SCRIPTS
+     storage.js  -> "base de datos" simulada en localStorage
+     common.js   -> utilidades compartidas (tema, toasts, validación, sesión)
+     dashboard.js -> shell: sidebar, cargador maestro (fetch), History API
+     sections/*  -> lógica propia de cada pestaña (se ejecuta tras insertar su HTML)
+     ========================================================================== -->
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/sections/kpis.js"></script>
+  <script src="js/sections/socios.js"></script>
+  <script src="js/sections/mensualidades.js"></script>
+  <script src="js/sections/rutinas.js"></script>
+  <script src="js/sections/estadisticas.js"></script>
+  <script src="js/sections/configuracion.js"></script>
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>

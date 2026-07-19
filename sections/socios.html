@@ -1,0 +1,111 @@
+<!-- ----------------------------------------------------------------
+     VISTA B: GESTIÓN DE SOCIOS (CRUD DE SOCIOS)
+     Fragmento cargado de forma asíncrona por dashboard.js (fetch)
+     ---------------------------------------------------------------- -->
+<div id="tab-socios" class="dashboard-tab-content">
+
+  <div class="grid-form" style="grid-template-columns: 2fr 1fr; align-items: start;">
+
+    <!-- Formulario para Registrar Nuevo Socio -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3 id="socio-form-title">Registrar Nuevo Socio</h3>
+      </div>
+      <div class="section-card-body">
+        <form id="form-socio" novalidate>
+          <!-- ID oculto para edición -->
+          <input type="hidden" id="socio-id">
+
+          <div class="grid-form">
+            <div>
+              <label for="socio-nombre" class="form-label">Nombre Completo *</label>
+              <input type="text" id="socio-nombre" name="socio-nombre" class="form-control-dash" placeholder="Ej. Yerson Valera" required>
+              <small class="field-error-msg" id="err-socio-nombre"></small>
+            </div>
+            <div>
+              <label for="socio-telefono" class="form-label">Teléfono *</label>
+              <input type="tel" id="socio-telefono" name="socio-telefono" class="form-control-dash" placeholder="Ej. 3001234567" pattern="^[0-9]{7,10}$" title="Ingresa entre 7 y 10 dígitos numéricos" required>
+              <small class="field-error-msg" id="err-socio-telefono"></small>
+            </div>
+          </div>
+          <div class="grid-form">
+            <div>
+              <label for="socio-email" class="form-label">Correo Electrónico *</label>
+              <input type="email" id="socio-email" name="socio-email" class="form-control-dash" placeholder="Ej. socio@correo.com" required>
+              <small class="field-error-msg" id="err-socio-email"></small>
+            </div>
+            <div>
+              <label for="socio-membresia" class="form-label">Seleccionar Membresía *</label>
+              <select id="socio-membresia" name="socio-membresia" class="form-control-dash" required>
+                <option value="m1">Plan Mensual General ($90,000)</option>
+                <option value="m2" selected>Plan Trimestral ($240,000)</option>
+                <option value="m3">Plan Anual VIP ($864,000)</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-form" style="grid-template-columns: 1fr 1fr;">
+            <div>
+              <label for="socio-fecha" class="form-label">Fecha de Ingreso *</label>
+              <input type="date" id="socio-fecha" name="socio-fecha" class="form-control-dash" required>
+            </div>
+            <div>
+              <label for="socio-estado" class="form-label">Estado de Membresía</label>
+              <select id="socio-estado" name="socio-estado" class="form-control-dash">
+                <option value="Activo">Activo</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Vencido">Vencido</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Ficha Física / Historial Corporal Inicial -->
+          <h4 style="margin: 1.5rem 0 1rem; font-size: 0.95rem; border-bottom: 1px solid var(--card-border); padding-bottom: 5px;">Ficha Corporal (Medidas Físicas)</h4>
+          <div class="grid-form">
+            <div>
+              <label for="socio-peso" class="form-label">Peso (kg)</label>
+              <input type="number" id="socio-peso" name="socio-peso" class="form-control-dash" placeholder="Ej. 70" step="0.1" min="0">
+            </div>
+            <div>
+              <label for="socio-estatura" class="form-label">Estatura (cm)</label>
+              <input type="number" id="socio-estatura" name="socio-estatura" class="form-control-dash" placeholder="Ej. 175" min="0">
+            </div>
+            <div>
+              <label for="socio-grasa" class="form-label">% Grasa Corporal</label>
+              <input type="number" id="socio-grasa" name="socio-grasa" class="form-control-dash" placeholder="Ej. 15" step="0.1" min="0" max="100">
+            </div>
+            <div>
+              <label for="socio-musculo" class="form-label">% Masa Muscular</label>
+              <input type="number" id="socio-musculo" name="socio-musculo" class="form-control-dash" placeholder="Ej. 40" step="0.1" min="0" max="100">
+            </div>
+          </div>
+          <div class="form-group" style="margin-top: 1rem;">
+            <label for="socio-antecedentes" class="form-label">Antecedentes Médicos / Observaciones</label>
+            <textarea id="socio-antecedentes" name="socio-antecedentes" class="form-control-dash" placeholder="Ej. Lesión leve en rodilla, hipertenso, asma..."></textarea>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; gap: 10px; align-items:center;">
+            <button type="submit" class="btn-dash btn-dash-primary" id="btn-save-socio">Guardar Registro</button>
+            <button type="button" class="btn-dash btn-dash-secondary" id="btn-cancel-socio">Cancelar</button>
+            <span class="autosave-indicator" id="form-socio-autosave-indicator"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Listado Rápido de Socios y Acciones -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Lista de Socios</h3>
+        <span class="section-card-header-count" id="socios-count-badge">0 socios</span>
+      </div>
+      <div class="section-card-body" style="padding: 0;">
+        <div class="mini-list" id="socios-list-body">
+          <!-- Cargado dinámicamente desde JS -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>

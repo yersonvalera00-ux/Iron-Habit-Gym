@@ -1,0 +1,56 @@
+<!-- ----------------------------------------------------------------
+     VISTA D: GESTIÓN DE RUTINAS
+     Fragmento cargado de forma asíncrona por dashboard.js (fetch)
+     ---------------------------------------------------------------- -->
+<div id="tab-rutinas" class="dashboard-tab-content">
+
+  <div class="grid-form" style="grid-template-columns: 1fr 1.5fr; align-items: start;">
+
+    <!-- Asignar Nueva Rutina -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Asignar Rutina</h3>
+      </div>
+      <div class="section-card-body">
+        <form id="form-rutina" novalidate>
+          <div class="form-group">
+            <label for="rutina-socio-id" class="form-label">Socio Asignado *</label>
+            <select id="rutina-socio-id" name="rutina-socio-id" class="form-control-dash" required>
+              <!-- Cargado dinámicamente -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rutina-grupo" class="form-label">Grupo Muscular / Enfoque *</label>
+            <input type="text" id="rutina-grupo" name="rutina-grupo" class="form-control-dash" placeholder="Ej. Pierna completa, Pecho y Hombro" required>
+            <small class="field-error-msg" id="err-rutina-grupo"></small>
+          </div>
+          <div class="form-group">
+            <label for="rutina-fecha" class="form-label">Fecha de Asignación *</label>
+            <input type="date" id="rutina-fecha" name="rutina-fecha" class="form-control-dash" required>
+          </div>
+
+          <!-- Selector interactivo de ejercicios -->
+          <label class="form-label" style="margin-top: 1rem;">Seleccionar Ejercicios del Catálogo</label>
+          <div class="exercises-catalog" id="catalog-exercises-container">
+            <!-- Cargado dinámicamente desde JS -->
+          </div>
+          <small class="field-error-msg" id="err-rutina-ejercicios"></small>
+
+          <button type="submit" class="btn-dash btn-dash-primary" style="width: 100%; margin-top: 1.5rem;" id="btn-save-rutina">Asignar y Guardar Rutina</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Listado de Rutinas Asignadas por Socio -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Fichas de Rutinas Activas</h3>
+      </div>
+      <div class="section-card-body" id="rutinas-list-container">
+        <!-- Tarjetas de rutinas cargadas por JS -->
+      </div>
+    </div>
+
+  </div>
+
+</div>

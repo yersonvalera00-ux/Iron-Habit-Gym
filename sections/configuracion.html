@@ -1,0 +1,59 @@
+<!-- ----------------------------------------------------------------
+     VISTA F: CONFIGURACIÓN Y PERFIL DE USUARIO
+     Fragmento cargado de forma asíncrona por dashboard.js (fetch)
+     ---------------------------------------------------------------- -->
+<div id="tab-configuracion" class="dashboard-tab-content">
+
+  <div class="grid-form" style="grid-template-columns: 1fr 1fr; align-items: start;">
+
+    <!-- Perfil del administrador -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Perfil de Administrador</h3>
+      </div>
+      <div class="section-card-body">
+        <form id="form-config-perfil" novalidate>
+          <div class="form-group">
+            <label for="conf-nombre" class="form-label">Nombre del Administrador</label>
+            <input type="text" id="conf-nombre" name="conf-nombre" class="form-control-dash" required>
+          </div>
+          <div class="form-group">
+            <label for="conf-email" class="form-label">Correo Electrónico</label>
+            <input type="email" id="conf-email" name="conf-email" class="form-control-dash" required>
+          </div>
+          <div class="form-group">
+            <label for="conf-password" class="form-label">Nueva Contraseña (Dejar en blanco para mantener actual)</label>
+            <input type="password" id="conf-password" name="conf-password" class="form-control-dash" placeholder="••••••••" autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn-dash btn-dash-primary" style="margin-top: 1rem;">Actualizar Datos</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Configuración General del Centro Deportivo -->
+    <div class="section-card">
+      <div class="section-card-header">
+        <h3>Precios de Membresías (Actualizar tarifas)</h3>
+      </div>
+      <div class="section-card-body">
+        <form id="form-config-tarifas" novalidate>
+          <div class="form-group">
+            <label for="rate-mensual" class="form-label">Precio Plan Mensual ($ COP)</label>
+            <input type="number" id="rate-mensual" name="rate-mensual" class="form-control-dash" min="0" required>
+          </div>
+          <div class="form-group">
+            <label for="rate-trimestral" class="form-label">Precio Plan Trimestral ($ COP)</label>
+            <input type="number" id="rate-trimestral" name="rate-trimestral" class="form-control-dash" min="0" required>
+          </div>
+          <div class="form-group">
+            <label for="rate-anual" class="form-label">Precio Plan Anual VIP ($ COP)</label>
+            <input type="number" id="rate-anual" name="rate-anual" class="form-control-dash" min="0" required>
+          </div>
+          <button type="submit" class="btn-dash btn-dash-primary" style="margin-top: 1rem;">Guardar Nuevos Precios</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
