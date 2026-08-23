@@ -985,6 +985,27 @@ textarea.form-control {
   letter-spacing: -0.03125rem;
 }
 
+.sidebar-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.375rem;
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  margin-left: auto;
+}
+
+.sidebar-close-btn:hover {
+  color: var(--text-main);
+  background-color: var(--bg-input);
+}
+
 .sidebar-menu-title {
   font-size: 0.75rem;
   font-weight: 700;
@@ -1692,6 +1713,10 @@ textarea.form-control-dash {
   .sidebar.show-sidebar {
     transform: translateX(0);
     box-shadow: 0.625rem 0 1.875rem rgba(0,0,0,0.15);
+  }
+
+  .sidebar-close-btn {
+    display: flex;
   }
 
   .menu-toggle-btn {

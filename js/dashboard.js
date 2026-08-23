@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("btn-toggle-sidebar").addEventListener("click", toggleSidebar);
+  document.getElementById("btn-close-sidebar").addEventListener("click", toggleSidebar);
   document.getElementById("btn-toggle-theme").addEventListener("click", toggleDarkMode);
   document.getElementById("btn-logout").addEventListener("click", handleLogout);
 
@@ -178,7 +179,7 @@ async function handleLogout() {
 
   localStorage.removeItem("is_logged_in");
   localStorage.removeItem("active_user");
-  window.location.href = "index.html";
+  window.location.href = "index.php";
 }
 
 function closeFichaModal() {
