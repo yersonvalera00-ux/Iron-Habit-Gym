@@ -178,7 +178,7 @@ async function handleLogout() {
 
   localStorage.removeItem("is_logged_in");
   localStorage.removeItem("active_user");
-  window.location.href = "index.html";
+  window.location.href = "index.php";
 }
 
 function closeFichaModal() {

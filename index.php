@@ -85,7 +85,7 @@
         <a href="#horarios">Horarios</a>
         <a href="#contacto">Contacto</a>
         <a href="login.html" class="btn btn-primary">
-          <i class="ti ti-lock"></i> Acceso Admin
+          <i class="ti ti-user"></i> Login
         </a>
       </nav>
 
@@ -112,7 +112,7 @@
       <a href="#contacto"  class="mobile-nav-link" style="display:block; padding:1rem 1.5rem; color:#475569; font-weight:500; border-bottom:1px solid #f1f5f9; text-decoration:none; transition:all 0.15s ease;">Contacto</a>
       <div style="padding:1rem 1.5rem;">
         <a href="login.html" class="btn btn-primary" style="width:100%; justify-content:center;">
-          <i class="ti ti-lock"></i> Acceso Admin
+          <i class="ti ti-user"></i> Login
         </a>
       </div>
     </div>
@@ -384,7 +384,7 @@
           <a href="#horarios">Horarios</a>
         </div>
       </div>
-      <p class="footer-copy">Iron Habit Gym · SENA Barranquilla · Análisis y Desarrollo de Software · Ficha 3186630</p>
+      <p class="footer-copy">Iron Habit Gym · SENA Barranquilla</p>
     </footer>
 
   </div><!-- /layout-landing -->
