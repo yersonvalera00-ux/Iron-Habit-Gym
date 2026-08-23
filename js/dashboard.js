@@ -156,6 +156,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabInicial = pestañaDesdeURL();
   cargarSeccion(tabInicial, { pushState: false });
   history.replaceState({ tab: tabInicial }, "", "?tab=" + tabInicial);
+
+  // Cerrar sidebar al hacer clic fuera de él en pantallas móviles
+  document.addEventListener("click", (e) => {
+    const sidebar = document.getElementById("dashboard-sidebar");
+    const toggleBtn = document.getElementById("btn-toggle-sidebar");
+    if (sidebar && sidebar.classList.contains("show-sidebar")) {
+      if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove("show-sidebar");
+      }
+    }
+  });
 });
 
 function pintarDatosUsuarioActivo() {

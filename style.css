@@ -1733,8 +1733,19 @@ textarea.form-control-dash {
     position: fixed;
     left: 0;
     top: 0;
+    width: 17.5rem;
     height: 100vh;
+    padding: 1.5rem 1rem;
     transform: translateX(-100%);
+  }
+
+  .sidebar-logo {
+    padding: 0;
+    gap: 0.5rem;
+  }
+
+  .sidebar-logo-text {
+    font-size: 1.15rem;
   }
 
   .sidebar.show-sidebar {
