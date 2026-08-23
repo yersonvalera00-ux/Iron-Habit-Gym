@@ -85,19 +85,24 @@
         <a href="#horarios">Horarios</a>
         <a href="#contacto">Contacto</a>
         <a href="login.html" class="btn btn-primary">
-          <i class="ti ti-lock"></i> Acceso Admin
+          <i class="ti ti-user"></i> Login
         </a>
       </nav>
 
-      <!-- Botón hamburguesa (visible hasta 1024px, cubre móvil + tablet) -->
-      <button id="menu-toggle"
-              class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg
-                     border border-gray-200 bg-white/80 hover:bg-gray-50 transition-colors"
-              aria-label="Abrir menú" aria-expanded="false">
-        <span class="ham-bar block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
-        <span class="ham-bar block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
-        <span class="ham-bar block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
-      </button>
+      <!-- Contenedor de controles móviles (visible hasta 1024px) -->
+      <div class="lg:hidden flex items-center gap-3">
+        <a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.375rem;">
+          <i class="ti ti-user"></i> Login
+        </a>
+        <button id="menu-toggle"
+                class="flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg
+                       border border-gray-200 bg-white/80 hover:bg-gray-50 transition-colors"
+                aria-label="Abrir menú" aria-expanded="false">
+          <span class="ham-bar block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
+          <span class="ham-bar block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
+          <span class="ham-bar block w-5 h-0.5 bg-gray-700 transition-all duration-300"></span>
+        </button>
+      </div>
     </header>
 
     <!-- Menú móvil desplegable -->
@@ -112,7 +117,7 @@
       <a href="#contacto"  class="mobile-nav-link" style="display:block; padding:1rem 1.5rem; color:#475569; font-weight:500; border-bottom:1px solid #f1f5f9; text-decoration:none; transition:all 0.15s ease;">Contacto</a>
       <div style="padding:1rem 1.5rem;">
         <a href="login.html" class="btn btn-primary" style="width:100%; justify-content:center;">
-          <i class="ti ti-lock"></i> Acceso Admin
+          <i class="ti ti-user"></i> Login
         </a>
       </div>
     </div>
@@ -384,7 +389,7 @@
           <a href="#horarios">Horarios</a>
         </div>
       </div>
-      <p class="footer-copy">Iron Habit Gym · SENA Barranquilla · Análisis y Desarrollo de Software · Ficha 3186630</p>
+      <p class="footer-copy">Iron Habit Gym · SENA Barranquilla</p>
     </footer>
 
   </div><!-- /layout-landing -->
