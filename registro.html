@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta — Iron Habit Gym</title>
+
+  <link rel="icon" type="image/png" href="logo-icon-favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body id="app-body">
+
+  <div id="layout-register" class="page-layout active-layout">
+    <main class="login-section">
+      <div class="login-card">
+        
+        <!-- Identidad de Marca -->
+        <div class="login-logo">
+          <img src="logo-icon.png" alt="Logo de Iron Habit Gym" class="login-logo-img">
+          <span class="login-logo-text">Iron Habit Gym</span>
+        </div>
+
+        <!-- Encabezado de Sección -->
+        <header class="login-header">
+          <h1>Crear cuenta</h1>
+          <p>Regístrate para administrar tu gimnasio</p>
+        </header>
+
+        <!-- Formulario de Registro -->
+        <form id="form-registro" novalidate aria-label="Formulario de creación de cuenta">
+          
+          <!-- Nombre Completo -->
+          <div class="login-group">
+            <label for="reg-nombre">Nombre completo</label>
+            <input 
+              type="text" 
+              id="reg-nombre" 
+              name="reg-nombre" 
+              class="auth-input-clean" 
+              placeholder="Nombre y apellido" 
+              required 
+              autocomplete="name"
+              aria-describedby="err-reg-nombre">
+            <small class="field-error-msg" id="err-reg-nombre" role="alert"></small>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="login-group">
+            <label for="reg-email">Correo electronico</label>
+            <div class="input-with-icon">
+              <i class="ti ti-mail" aria-hidden="true"></i>
+              <input 
+                type="email" 
+                id="reg-email" 
+                name="reg-email" 
+                placeholder="correo@ejemplo.com" 
+                required 
+                autocomplete="email"
+                aria-describedby="err-reg-email"
+                spellcheck="false">
+            </div>
+            <small class="field-error-msg" id="err-reg-email" role="alert"></small>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="login-group">
+            <label for="reg-password">Contraseña</label>
+            <div class="input-with-icon">
+              <i class="ti ti-lock" aria-hidden="true"></i>
+              <input 
+                type="password" 
+                id="reg-password" 
+                name="reg-password" 
+                placeholder="••••••••" 
+                required 
+                minlength="6"
+                autocomplete="new-password"
+                aria-describedby="err-reg-password">
+              <button 
+                type="button" 
+                class="eye-toggle-btn" 
+                aria-label="Mostrar contraseña" 
+                aria-pressed="false"
+                data-target="reg-password">
+                <i class="ti ti-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+            <small class="field-error-msg" id="err-reg-password" role="alert"></small>
+          </div>
+
+          <!-- Repetir Contraseña -->
+          <div class="login-group" style="margin-bottom: 1.25rem;">
+            <label for="reg-password-confirm">Repetir contraseña</label>
+            <div class="input-with-icon">
+              <i class="ti ti-lock" aria-hidden="true"></i>
+              <input 
+                type="password" 
+                id="reg-password-confirm" 
+                name="reg-password-confirm" 
+                placeholder="••••••••" 
+                required 
+                minlength="6"
+                autocomplete="new-password"
+                aria-describedby="err-reg-password-confirm">
+              <button 
+                type="button" 
+                class="eye-toggle-btn" 
+                aria-label="Mostrar confirmación de contraseña" 
+                aria-pressed="false"
+                data-target="reg-password-confirm">
+                <i class="ti ti-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+            <small class="field-error-msg" id="err-reg-password-confirm" role="alert"></small>
+          </div>
+
+          <button type="submit" class="btn-login-submit" id="btn-register-submit">
+            Crear cuenta
+          </button>
+
+          <!-- Enlace Inferior -->
+          <nav class="login-extra-links" aria-label="Enlace para iniciar sesión">
+            <p class="login-forgot-text">
+              ¿Ya tienes cuenta? <a href="login.html" class="login-link-primary">Inicia sesión</a>
+            </p>
+          </nav>
+
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

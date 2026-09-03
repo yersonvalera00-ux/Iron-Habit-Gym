@@ -18,31 +18,38 @@
 // --------------------------------------------------------------------------
 
 function toggleDarkMode() {
-  const body = document.getElementById("app-body");
-  const icon = document.getElementById("theme-icon");
+  const body = document.getElementById("app-body") || document.body;
+  const icon = document.getElementById("theme-icon") || document.querySelector(".theme-toggle-btn i");
+  const btn = document.getElementById("btn-toggle-theme");
 
   body.classList.toggle("dark");
+  const esOscuro = body.classList.contains("dark");
 
-  if (body.classList.contains("dark")) {
-    if (icon) icon.className = "ti ti-moon";
+  if (esOscuro) {
+    if (icon) icon.className = "ti ti-sun";
+    if (btn) btn.setAttribute("aria-label", "Cambiar a modo claro");
     localStorage.setItem("theme_preference", "dark");
   } else {
-    if (icon) icon.className = "ti ti-sun";
+    if (icon) icon.className = "ti ti-moon";
+    if (btn) btn.setAttribute("aria-label", "Cambiar a modo oscuro");
     localStorage.setItem("theme_preference", "light");
   }
 }
 
 function aplicarPreferenciaTema() {
   const pref = localStorage.getItem("theme_preference");
-  const body = document.getElementById("app-body");
-  const icon = document.getElementById("theme-icon");
+  const body = document.getElementById("app-body") || document.body;
+  const icon = document.getElementById("theme-icon") || document.querySelector(".theme-toggle-btn i");
+  const btn = document.getElementById("btn-toggle-theme");
 
   if (pref === "dark") {
     body.classList.add("dark");
-    if (icon) icon.className = "ti ti-moon";
+    if (icon) icon.className = "ti ti-sun";
+    if (btn) btn.setAttribute("aria-label", "Cambiar a modo claro");
   } else {
     body.classList.remove("dark");
-    if (icon) icon.className = "ti ti-sun";
+    if (icon) icon.className = "ti ti-moon";
+    if (btn) btn.setAttribute("aria-label", "Cambiar a modo oscuro");
   }
 }
 

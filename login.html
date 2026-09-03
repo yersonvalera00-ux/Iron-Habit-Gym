@@ -11,51 +11,84 @@
 </head>
 <body id="app-body">
 
-  <!-- ==========================================================================
-     PANTALLA DE ACCESO (LOGIN) — Documento HTML independiente.
-     Al enviarse el formulario con éxito, el navegador recarga hacia dashboard.html
-     ========================================================================== -->
   <div id="layout-login" class="page-layout active-layout">
-    <section class="login-section">
+    <main class="login-section">
       <div class="login-card">
+        
+        <!-- Identidad de Marca -->
         <div class="login-logo">
-          <div class="login-logo-icon"><i class="ti ti-barbell"></i></div>
+          <img src="logo-icon.png" alt="Logo de Iron Habit Gym" class="login-logo-img">
           <span class="login-logo-text">Iron Habit Gym</span>
         </div>
-        <div class="login-header">
-          <h2>Iniciar Sesión</h2>
-          <p>Introduce las credenciales de administración del gimnasio</p>
-        </div>
 
-        <!-- Formulario de acceso. El correo escrito se conserva en sessionStorage
-             para que, si el usuario refresca por accidente, no tenga que reescribirlo -->
-        <form id="form-login-principal" novalidate>
+        <!-- Encabezado de Sección -->
+        <header class="login-header">
+          <h1>Iniciar Sesión</h1>
+          <p>Introduce las credenciales de administración del gimnasio</p>
+        </header>
+
+        <!-- Formulario de Inicio de Sesión -->
+        <form id="form-login-principal" novalidate aria-label="Formulario de inicio de sesión">
+          
           <div class="login-group">
-            <label for="login-email">Usuario o Correo</label>
+            <label for="login-email">Usuario o correo</label>
             <div class="input-with-icon">
-              <i class="ti ti-mail"></i>
-              <input type="email" id="login-email" name="login-email" placeholder="correo@ejemplo.com" required autocomplete="username">
+              <i class="ti ti-mail" aria-hidden="true"></i>
+              <input 
+                type="text" 
+                id="login-email" 
+                name="login-email" 
+                placeholder="correo@ejemplo.com" 
+                required 
+                autocomplete="username"
+                aria-describedby="err-login-email"
+                spellcheck="false">
             </div>
-            <small class="field-error-msg" id="err-login-email"></small>
+            <small class="field-error-msg" id="err-login-email" role="alert"></small>
           </div>
-          <div class="login-group" style="margin-bottom: 1.5rem;">
+
+          <div class="login-group" style="margin-bottom: 1.25rem;">
             <label for="login-password">Contraseña</label>
             <div class="input-with-icon">
-              <i class="ti ti-lock"></i>
-              <input type="password" id="login-password" name="login-password" placeholder="••••••••" required autocomplete="current-password">
-              <i class="ti ti-eye eye" id="toggle-pwd-btn" role="button" tabindex="0" aria-label="Mostrar contraseña"></i>
+              <i class="ti ti-lock" aria-hidden="true"></i>
+              <input 
+                type="password" 
+                id="login-password" 
+                name="login-password" 
+                placeholder="••••••••" 
+                required 
+                autocomplete="current-password"
+                aria-describedby="err-login-password">
+              <button 
+                type="button" 
+                class="eye-toggle-btn" 
+                id="toggle-pwd-btn" 
+                aria-label="Mostrar contraseña" 
+                aria-pressed="false"
+                data-target="login-password">
+                <i class="ti ti-eye" aria-hidden="true"></i>
+              </button>
             </div>
-            <small class="field-error-msg" id="err-login-password"></small>
+            <small class="field-error-msg" id="err-login-password" role="alert"></small>
           </div>
 
-          <button type="submit" class="btn-login-submit" id="btn-login-submit">Ingresar al Sistema</button>
+          <button type="submit" class="btn-login-submit" id="btn-login-submit">
+            Ingresar al Sistema
+          </button>
+
+          <!-- Enlaces de Navegación -->
+          <nav class="login-extra-links" aria-label="Enlaces de recuperación y registro">
+            <a href="index.php" class="login-link-secondary">Volver a la pagina principal</a>
+            <p class="login-forgot-text">
+              ¿Olvidaste tu contraseña? <a href="recuperar.html" class="login-link-primary">Recupérala aquí</a>
+            </p>
+            <a href="registro.html" class="login-link-primary login-create-account">Crear cuenta</a>
+          </nav>
+
         </form>
 
-        <div class="back-to-landing">
-          <a href="index.html"><i class="ti ti-arrow-left"></i> Volver a la página principal</a>
-        </div>
       </div>
-    </section>
+    </main>
   </div>
 
   <div id="toast-container" class="toast-container" aria-live="polite"></div>

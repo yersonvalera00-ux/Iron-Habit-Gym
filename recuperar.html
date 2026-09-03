@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Contraseña — Iron Habit Gym</title>
+
+  <link rel="icon" type="image/png" href="logo-icon-favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body id="app-body">
+
+  <div id="layout-recuperar" class="page-layout active-layout">
+    <main class="login-section">
+      <div class="login-card">
+        
+        <!-- Identidad de Marca -->
+        <div class="login-logo">
+          <img src="logo-icon.png" alt="Logo de Iron Habit Gym" class="login-logo-img">
+          <span class="login-logo-text">Iron Habit Gym</span>
+        </div>
+
+        <!-- Encabezado de Sección -->
+        <header class="login-header">
+          <h1>Recuperar contraseña</h1>
+          <p>Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña</p>
+        </header>
+
+        <!-- Formulario de Recuperación -->
+        <form id="form-recuperar" novalidate aria-label="Formulario de recuperación de contraseña">
+          
+          <div class="login-group" style="margin-bottom: 1.5rem;">
+            <label for="recuperar-email">Correo electronico</label>
+            <div class="input-with-icon">
+              <i class="ti ti-mail" aria-hidden="true"></i>
+              <input 
+                type="email" 
+                id="recuperar-email" 
+                name="recuperar-email" 
+                placeholder="correo@ejemplo.com" 
+                required 
+                autocomplete="email"
+                aria-describedby="err-recuperar-email"
+                spellcheck="false">
+            </div>
+            <small class="field-error-msg" id="err-recuperar-email" role="alert"></small>
+          </div>
+
+          <button type="submit" class="btn-login-submit" id="btn-recuperar-submit">
+            Enviar enlace de recuperación
+          </button>
+
+          <!-- Enlace Inferior -->
+          <nav class="login-extra-links" aria-label="Enlace para volver a iniciar sesión">
+            <a href="login.html" class="login-link-primary">Volver a iniciar sesion</a>
+          </nav>
+
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/recuperar.js"></script>
+</body>
+</html>
