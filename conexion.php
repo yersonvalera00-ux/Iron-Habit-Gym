@@ -4,10 +4,12 @@
 // Archivo compartido por todos los scripts PHP del proyecto
 // =============================================================
 
-$servidor   = "localhost";
-$usuario    = "root";   // Usuario por defecto en XAMPP
-$password   = "";       // Sin contraseña por defecto en XAMPP
-$base_datos = "iron_habit_database";
+require_once __DIR__ . '/config.php';
+
+$servidor   = env('DB_HOST', 'localhost');
+$usuario    = env('DB_USER', 'root');   // Usuario por defecto en XAMPP
+$password   = env('DB_PASS', '');       // Sin contraseña por defecto en XAMPP
+$base_datos = env('DB_NAME', 'iron_habit_database');
 
 $conexion = mysqli_connect($servidor, $usuario, $password, $base_datos);
 

@@ -23,7 +23,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Configurar botones accesibles de visibilidad de contraseña
   configurarBotonesOjo(form);
+
+  // Asegurar que el botón de Google redirija adecuadamente
+  configurarBotonGoogle();
+
+  // Procesar respuestas y errores provenientes de Google OAuth
+  verificarParametrosOAuth();
 });
+
+/**
+ * Valida la navegación del botón de Google OAuth
+ */
+function configurarBotonGoogle() {
+  const btnGoogle = document.getElementById("btn-google-login");
+  if (!btnGoogle) return;
+
+  btnGoogle.addEventListener("click", (e) => {
+    if (window.location.protocol === "file:") {
+      e.preventDefault();
+      mostrarToast("Debes abrir el sistema desde XAMPP (http://localhost/iron-habit/login.html) para que PHP y Google funcionen.", "warning");
+    }
+  });
+}
+
+/**
+ * Notifica al usuario en caso de recibir errores o cancelaciones desde Google OAuth
+ */
+function verificarParametrosOAuth() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get("error");
+  if (!error) return;
+
+  const mensajesError = {
+    cancelled: { msg: "Inicio de sesión con Google cancelado.", tipo: "info" },
+    invalid_state: { msg: "La sesión de autorización expiró o no es válida. Intenta de nuevo.", tipo: "warning" },
+    no_code: { msg: "No se recibió el código de autorización desde Google.", tipo: "warning" },
+    config_error: { msg: "Debes configurar GOOGLE_CLIENT_ID y GOOGLE_CLIENT_SECRET en el archivo .env", tipo: "warning" },
+    token_exchange_failed: { msg: "Error al intercambiar el token con Google. Verifica tu conexión y credenciales.", tipo: "error" },
+    userinfo_failed: { msg: "No fue posible obtener el perfil de tu cuenta Google.", tipo: "error" },
+    missing_email: { msg: "Tu cuenta Google no proporcionó un correo electrónico válido.", tipo: "error" },
+    cuenta_inactiva: { msg: "Tu cuenta está registrada pero se encuentra inactiva. Contacta al administrador.", tipo: "error" },
+    db_error: { msg: "Error de base de datos al registrar tu cuenta de Google.", tipo: "error" }
+  };
+
+  const item = mensajesError[error] || { msg: "Error en la autenticación con Google.", tipo: "error" };
+  if (typeof mostrarToast === "function") {
+    mostrarToast(item.msg, item.tipo);
+  }
+
+  // Limpiar la URL para evitar mostrar el toast nuevamente si el usuario recarga
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
 
 function handleLoginSubmit(event) {
   event.preventDefault();

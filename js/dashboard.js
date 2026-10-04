@@ -175,9 +175,19 @@ function pintarDatosUsuarioActivo() {
 
   document.getElementById("current-user-name").innerText = user.nombre;
   document.getElementById("topbar-user-display").innerText = user.nombre.split(" ")[0];
-  const iniciales = user.nombre.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
-  document.getElementById("current-user-avatar").innerText = iniciales;
-  document.getElementById("topbar-avatar").innerText = iniciales;
+
+  const currentAvatar = document.getElementById("current-user-avatar");
+  const topbarAvatar = document.getElementById("topbar-avatar");
+
+  if (user.avatar) {
+    const imgHtml = `<img src="${user.avatar}" alt="${user.nombre}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" referrerpolicy="no-referrer">`;
+    if (currentAvatar) currentAvatar.innerHTML = imgHtml;
+    if (topbarAvatar) topbarAvatar.innerHTML = imgHtml;
+  } else {
+    const iniciales = user.nombre.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
+    if (currentAvatar) currentAvatar.innerText = iniciales;
+    if (topbarAvatar) topbarAvatar.innerText = iniciales;
+  }
 }
 
 function toggleSidebar() {

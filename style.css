@@ -931,6 +931,101 @@ body.dark .eye-toggle-btn:hover {
   outline-offset: 3px;
 }
 
+/* ==========================================================================
+   BOTÓN OFICIAL DE GOOGLE Y SEPARADOR DE ACCESO
+   ========================================================================== */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.15rem 0;
+  color: var(--text-sub, #64748b);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+}
+
+.auth-divider span {
+  padding: 0 0.85rem;
+  text-transform: lowercase;
+}
+
+.btn-google-auth {
+  width: 100%;
+  height: 2.875rem !important;
+  padding: 0 1rem !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border: 1.5px solid #d1d5db !important;
+  border-radius: var(--radius-sm) !important;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.btn-google-auth:hover {
+  background-color: #f9fafb !important;
+  border-color: #9ca3af !important;
+  color: #111827 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.0625rem);
+  text-decoration: none !important;
+}
+
+.btn-google-auth:active {
+  background-color: #f3f4f6 !important;
+  transform: translateY(0);
+}
+
+.btn-google-auth:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-google-auth .google-icon {
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Adaptación a Modo Oscuro */
+body.dark .btn-google-auth {
+  background-color: #1f1d2b;
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .btn-google-auth:hover {
+  background-color: #282438;
+  border-color: rgba(191, 131, 252, 0.4);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(132, 6, 249, 0.2);
+}
+
+body.dark .auth-divider {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark .auth-divider::before,
+body.dark .auth-divider::after {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
 .login-extra-links {
   text-align: center;
   margin-top: 1.5rem;

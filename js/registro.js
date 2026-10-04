@@ -18,6 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Configurar botones accesibles de visibilidad de contraseña
   configurarBotonesOjo(form);
 
+  const btnGoogleReg = document.getElementById("btn-google-register");
+  if (btnGoogleReg) {
+    btnGoogleReg.addEventListener("click", (e) => {
+      if (window.location.protocol === "file:") {
+        e.preventDefault();
+        mostrarToast("Debes abrir el sistema desde XAMPP (http://localhost/iron-habit/registro.html) para que PHP y Google funcionen.", "warning");
+      }
+    });
+  }
+
   // Validación de coincidencia de contraseñas en vivo
   const passInput = document.getElementById("reg-password");
   const confirmInput = document.getElementById("reg-password-confirm");
