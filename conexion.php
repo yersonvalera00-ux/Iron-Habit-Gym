@@ -23,5 +23,5 @@ if (!$conexion) {
 
 // Aseguramos que los datos se lean y guarden en UTF-8
 mysqli_set_charset($conexion, "utf8");
-
 ?>
+
