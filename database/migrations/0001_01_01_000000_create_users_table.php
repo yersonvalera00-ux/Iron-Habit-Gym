@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            // Rol del usuario: define permisos (admin elimina; recepcionista no).
+            $table->enum('rol', ['admin', 'recepcionista'])->default('recepcionista');
+            
             $table->rememberToken();
             $table->timestamps();
         });
