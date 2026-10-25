@@ -67,5 +67,5 @@ if (!defined('GOOGLE_CLIENT_SECRET')) {
     define('GOOGLE_CLIENT_SECRET', env('GOOGLE_CLIENT_SECRET', ''));
 }
 if (!defined('GOOGLE_REDIRECT_URI')) {
-    define('GOOGLE_REDIRECT_URI', env('GOOGLE_REDIRECT_URI', 'http://localhost/iron-habit/google-callback.php'));
+    define('GOOGLE_REDIRECT_URI', env('GOOGLE_REDIRECT_URI', 'http://localhost/iron-habit/public/google-callback.php'));
 }
