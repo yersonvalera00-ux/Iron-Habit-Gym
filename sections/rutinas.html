@@ -21,7 +21,7 @@
           </div>
           <div class="form-group">
             <label for="rutina-grupo" class="form-label">Grupo Muscular / Enfoque *</label>
-            <input type="text" id="rutina-grupo" name="rutina-grupo" class="form-control-dash" placeholder="Ej. Pierna completa, Pecho y Hombro" required>
+            <input type="text" id="rutina-grupo" name="rutina-grupo" class="form-control-dash" placeholder="Ej. Pierna completa, Pecho y Hombro" data-input-mode="texto" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+" title="Solo se permite texto (letras y espacios)" required>
             <small class="field-error-msg" id="err-rutina-grupo"></small>
           </div>
           <div class="form-group">

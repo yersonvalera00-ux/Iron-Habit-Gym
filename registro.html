@@ -39,6 +39,9 @@
               name="reg-nombre" 
               class="auth-input-clean" 
               placeholder="Nombre y apellido" 
+              data-input-mode="texto"
+              pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+"
+              title="Solo se permite texto (letras y espacios)"
               required 
               autocomplete="name"
               aria-describedby="err-reg-nombre">

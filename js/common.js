@@ -173,6 +173,12 @@ function validarFormulario(form) {
 function mensajeDeErrorPara(campo) {
   if (campo.validity.valueMissing) return "Este campo es obligatorio.";
   if (campo.validity.typeMismatch && campo.type === "email") return "Ingresa un correo electrónico válido.";
+  if (campo.validity.tooShort && modoDeEntrada(campo) === "telefono") {
+    return "El teléfono debe tener exactamente 10 dígitos.";
+  }
+  if (campo.validity.tooLong && modoDeEntrada(campo) === "telefono") {
+    return "El teléfono debe tener exactamente 10 dígitos.";
+  }
   if (campo.validity.patternMismatch) return campo.title || "El formato ingresado no es válido.";
   if (campo.validity.rangeUnderflow) return `El valor mínimo permitido es ${campo.min}.`;
   if (campo.validity.rangeOverflow) return `El valor máximo permitido es ${campo.max}.`;
@@ -274,6 +280,131 @@ function debounce(fn, delay) {
     timeoutId = setTimeout(() => fn(...args), delay);
   };
 }
+
+// --------------------------------------------------------------------------
+// 4b. RESTRICCIONES DE ENTRADA (solo texto / solo números / teléfono 10 dígitos)
+//     Bloquea teclas y pega inválidos en el momento, no solo al enviar.
+// --------------------------------------------------------------------------
+
+const PATRON_SOLO_TEXTO = /[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]/g;
+const PATRON_SOLO_ENTEROS = /[^0-9]/g;
+const PATRON_SOLO_DECIMAL = /[^0-9.]/g;
+
+function modoDeEntrada(campo) {
+  if (campo.dataset.inputMode) return campo.dataset.inputMode;
+
+  const id = (campo.id || campo.name || "").toLowerCase();
+  if (campo.type === "tel" || id.includes("telefono") || id.includes("teléfono") || id.includes("phone")) {
+    return "telefono";
+  }
+  if (campo.type === "number" || id.includes("monto") || id.includes("precio") || id.includes("rate-")) {
+    const step = campo.getAttribute("step");
+    return step && step.includes(".") ? "decimal" : "numero";
+  }
+  if (campo.type === "email" || id.includes("email") || id.includes("correo")) return "email";
+  if (campo.type === "password" || campo.type === "hidden" || campo.type === "checkbox" || campo.type === "date") {
+    return "libre";
+  }
+  if (campo.tagName === "TEXTAREA") return "libre";
+  if (campo.type === "text") return "texto";
+  return "libre";
+}
+
+function sanitizarValor(modo, valor, campo) {
+  if (modo === "texto") {
+    return valor.replace(PATRON_SOLO_TEXTO, "").replace(/\s{2,}/g, " ");
+  }
+  if (modo === "telefono") {
+    return valor.replace(PATRON_SOLO_ENTEROS, "").slice(0, 10);
+  }
+  if (modo === "numero") {
+    return valor.replace(PATRON_SOLO_ENTEROS, "");
+  }
+  if (modo === "decimal") {
+    let limpio = valor.replace(PATRON_SOLO_DECIMAL, "");
+    const partes = limpio.split(".");
+    if (partes.length > 2) limpio = partes[0] + "." + partes.slice(1).join("");
+    return limpio;
+  }
+  if (modo === "email") {
+    return valor.replace(/\s/g, "");
+  }
+  return valor;
+}
+
+function aplicarRestriccionACampo(campo) {
+  if (!campo || campo.dataset.restriccionesActivas === "1") return;
+
+  const modo = modoDeEntrada(campo);
+  if (modo === "libre") return;
+
+  campo.dataset.restriccionesActivas = "1";
+
+  if (modo === "telefono") {
+    campo.setAttribute("maxlength", "10");
+    campo.setAttribute("minlength", "10");
+    campo.setAttribute("inputmode", "numeric");
+    campo.setAttribute("pattern", "[0-9]{10}");
+    if (!campo.title) campo.title = "Ingresa exactamente 10 dígitos numéricos";
+  } else if (modo === "texto") {
+    campo.setAttribute("inputmode", "text");
+    if (!campo.pattern) {
+      campo.setAttribute("pattern", "[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\\s'-]+");
+      campo.title = campo.title || "Solo se permite texto (letras y espacios)";
+    }
+  } else if (modo === "numero" || modo === "decimal") {
+    campo.setAttribute("inputmode", modo === "decimal" ? "decimal" : "numeric");
+  }
+
+  const teclasPermitidas = new Set([
+    "Backspace", "Delete", "Tab", "Escape", "Enter",
+    "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown",
+    "Home", "End"
+  ]);
+
+  campo.addEventListener("keydown", (event) => {
+    if (teclasPermitidas.has(event.key) || event.ctrlKey || event.metaKey || event.altKey) return;
+
+    if (modo === "texto") {
+      if (!/^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]$/.test(event.key)) event.preventDefault();
+      return;
+    }
+    if (modo === "telefono" || modo === "numero") {
+      if (!/^[0-9]$/.test(event.key)) event.preventDefault();
+      return;
+    }
+    if (modo === "decimal") {
+      if (event.key === ".") {
+        if (campo.value.includes(".")) event.preventDefault();
+        return;
+      }
+      if (!/^[0-9]$/.test(event.key)) event.preventDefault();
+    }
+  });
+
+  campo.addEventListener("input", () => {
+    const original = campo.value;
+    const limpio = sanitizarValor(modo, original, campo);
+    if (limpio !== original) campo.value = limpio;
+  });
+
+  campo.addEventListener("paste", (event) => {
+    const texto = (event.clipboardData || window.clipboardData).getData("text");
+    const limpio = sanitizarValor(modo, texto, campo);
+    event.preventDefault();
+    const inicio = campo.selectionStart ?? campo.value.length;
+    const fin = campo.selectionEnd ?? campo.value.length;
+    const combinado = campo.value.slice(0, inicio) + limpio + campo.value.slice(fin);
+    campo.value = sanitizarValor(modo, combinado, campo);
+    campo.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+}
+
+function aplicarRestriccionesDeEntrada(raiz = document) {
+  raiz.querySelectorAll("input, textarea").forEach(aplicarRestriccionACampo);
+}
+
+document.addEventListener("DOMContentLoaded", () => aplicarRestriccionesDeEntrada(document));
 
 // --------------------------------------------------------------------------
 // 5. GUARDAS DE SESIÓN

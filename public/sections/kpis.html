@@ -1,0 +1,87 @@
+<!-- ----------------------------------------------------------------
+     VISTA A: RESUMEN / PANEL DE CONTROL (KPIS)
+     Fragmento cargado de forma asíncrona por dashboard.js (fetch)
+     ---------------------------------------------------------------- -->
+<div id="tab-kpis" class="dashboard-tab-content">
+
+  <!-- Rejilla de Métricas Principales (KPIs) -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-icon-wrap purple"><i class="ti ti-users"></i></div>
+      <div class="kpi-details">
+        <p>Socios Registrados</p>
+        <div class="kpi-val" id="kpi-total-socios">0</div>
+        <div class="kpi-card-sub">Registrados en total</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon-wrap green"><i class="ti ti-user-check"></i></div>
+      <div class="kpi-details">
+        <p>Membresías Activas</p>
+        <div class="kpi-val" id="kpi-active-socios">0</div>
+        <div class="kpi-card-sub up"><span>0%</span> al día</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon-wrap red"><i class="ti ti-user-exclamation"></i></div>
+      <div class="kpi-details">
+        <p>Membresías Vencidas</p>
+        <div class="kpi-val" id="kpi-expired-socios">0</div>
+        <div class="kpi-card-sub">Próximos cobros</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon-wrap blue"><i class="ti ti-cash"></i></div>
+      <div class="kpi-details">
+        <p>Ingresos del Mes</p>
+        <div class="kpi-val" id="kpi-monthly-income">$0</div>
+        <div class="kpi-card-sub up"><span>+0%</span> este mes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Actividades de Socios Recientes -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <h3>Socios y Estados de Membresía</h3>
+    </div>
+    <div class="section-card-body">
+      <div class="table-responsive">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Nombre del Socio</th>
+              <th>Tipo de Membresía</th>
+              <th>Fecha de Ingreso</th>
+              <th>Estado Actual</th>
+            </tr>
+          </thead>
+          <tbody id="kpi-recent-members-table">
+            <!-- Cargado dinámicamente desde JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel Informativo: Alimentación a Base de Datos (Explicación para el SENA) -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <h3><i class="ti ti-database" style="color: var(--accent);"></i> Explicación de Alimentación a Base de Datos (MySQL)</h3>
+    </div>
+    <div class="section-card-body">
+      <p style="font-size: 0.9rem; margin-bottom: 1rem;">Para el proyecto <strong>SENA</strong>, los datos de esta interfaz se registran actualmente en el navegador (<code>localStorage</code>). Al presionar cualquier botón de guardado (Registrar Socio, Registrar Pago, Asignar Rutina), la aplicación ejecuta internamente una función que simula una sentencia <strong>INSERT/UPDATE</strong> de SQL. A continuación puedes ver la equivalencia del flujo real:</p>
+
+      <div class="db-info-panel-box">
+        <div class="db-info-header"><i class="ti ti-code"></i> Consulta SQL ejecutada en simulación (MySQL Workbench):</div>
+        <div class="db-info-body">
+          <p>Cuando guardas información en esta interfaz web, el backend recibiría los datos y ejecutaría en MySQL Workbench:</p>
+          <div class="db-query-preview" id="db-sql-console">
+-- Esperando interacción con los formularios de gestión...
+-- Registra un socio o realiza un pago para ver la consulta SQL simulada aquí en tiempo real.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

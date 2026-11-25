@@ -15,7 +15,7 @@
         <form id="form-config-perfil" novalidate>
           <div class="form-group">
             <label for="conf-nombre" class="form-label">Nombre del Administrador</label>
-            <input type="text" id="conf-nombre" name="conf-nombre" class="form-control-dash" required>
+            <input type="text" id="conf-nombre" name="conf-nombre" class="form-control-dash" data-input-mode="texto" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]+" title="Solo se permite texto (letras y espacios)" required>
           </div>
           <div class="form-group">
             <label for="conf-email" class="form-label">Correo Electrónico</label>
@@ -39,15 +39,15 @@
         <form id="form-config-tarifas" novalidate>
           <div class="form-group">
             <label for="rate-mensual" class="form-label">Precio Plan Mensual ($ COP)</label>
-            <input type="number" id="rate-mensual" name="rate-mensual" class="form-control-dash" min="0" required>
+            <input type="number" id="rate-mensual" name="rate-mensual" class="form-control-dash" min="0" data-input-mode="numero" inputmode="numeric" required>
           </div>
           <div class="form-group">
             <label for="rate-trimestral" class="form-label">Precio Plan Trimestral ($ COP)</label>
-            <input type="number" id="rate-trimestral" name="rate-trimestral" class="form-control-dash" min="0" required>
+            <input type="number" id="rate-trimestral" name="rate-trimestral" class="form-control-dash" min="0" data-input-mode="numero" inputmode="numeric" required>
           </div>
           <div class="form-group">
             <label for="rate-anual" class="form-label">Precio Plan Anual VIP ($ COP)</label>
-            <input type="number" id="rate-anual" name="rate-anual" class="form-control-dash" min="0" required>
+            <input type="number" id="rate-anual" name="rate-anual" class="form-control-dash" min="0" data-input-mode="numero" inputmode="numeric" required>
           </div>
           <button type="submit" class="btn-dash btn-dash-primary" style="margin-top: 1rem;">Guardar Nuevos Precios</button>
         </form>

@@ -97,6 +97,10 @@ async function cargarSeccion(tabId, { pushState = true } = {}) {
     // Ejecutamos la inicialización propia de esa pestaña (listeners, tablas, etc.)
     seccion.init();
 
+    if (typeof aplicarRestriccionesDeEntrada === "function") {
+      aplicarRestriccionesDeEntrada(contenedor);
+    }
+
     // History API: registramos la navegación para que Atrás/Adelante funcionen
     if (pushState) {
       history.pushState({ tab: tabId }, "", "?tab=" + tabId);
